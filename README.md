@@ -1,1 +1,3 @@
-# films-api
+# Films-api
+
+## Development: Kert Lillemets
