@@ -21,3 +21,4 @@
 #### Ei saa kohe node . vajutada kui kodus teed esimest korda. npm install tuleb teha kaustas kus on package.json. Ja siis peaks juba sama jooksutada node . appi.
 
 ### npm install swagger-ui-express
+### npm install dotenv
