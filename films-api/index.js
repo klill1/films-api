@@ -2,6 +2,10 @@ require("dotenv").config()
 const app = require("express")()
 const port = process.env.APP_PORT
 
+app.get('/films', (req, res) => {
+    res.send(["Lord of the rings", "Hobbit"])
+})
+
 const swaggerUI = require("swagger-ui-express")
 const swaggerDocument = require("./docs/swagger.json")
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument))
