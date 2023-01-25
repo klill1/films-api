@@ -3,7 +3,7 @@ const app = require("express")()
 const port = process.env.APP_PORT
 
 app.get('/films', (req, res) => {
-    res.send(["Lord of the rings", "Hobbit"])
+    res.send(["The Lord of the Rings", "The Hobbit"])
 })
 
 const swaggerUI = require("swagger-ui-express")
