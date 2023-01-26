@@ -15,11 +15,11 @@ const pool = mariadb.createPool({
     connectionlimit: 5
 })
 
-app.get("/Users", async(req, res) =>{
+app.get("/users", async(req, res) =>{
     let connection;
     try {
         connection = await pool.getConnection()
-        const rows = await connection.query("SELECT Name FROM Users")
+        const rows = await connection.query("SELECT id, name FROM users")
         console.log(rows)
         res.send(rows)        
     }catch(error) {
