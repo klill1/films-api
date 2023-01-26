@@ -20,7 +20,6 @@ app.get("/users", async(req, res) =>{
     try {
         connection = await pool.getConnection()
         const rows = await connection.query("SELECT id, name FROM users")
-        console.log(rows)
         res.send(rows)        
     }catch(error) {
         throw error
@@ -33,7 +32,6 @@ app.get('/films', async (req, res) => {
     try {
         connection = await pool.getConnection()
         const rows = await connection.query("SELECT id, filmName FROM films")
-        console.log(rows)
         res.send(rows)
     } catch (error) {
         throw error
@@ -47,7 +45,6 @@ app.get('/customers', async (req, res) => {
     try {
         connection = await pool.getConnection()
         const rows = await connection.query("SELECT * FROM customers")
-        console.log(rows)
         res.send(rows)
     } catch (error) {
         throw error
