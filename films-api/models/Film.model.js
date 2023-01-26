@@ -8,7 +8,20 @@ module.exports = (sequelize, Sequelize) => {
         filmName: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        genre: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        description: {
+            type: Sequelize.STRING(4096)
+        },
+        releaseDate: {
+            type: Sequelize.DATEONLY,
+            allowNull: false
         }
+
+
     })
 
     return Film

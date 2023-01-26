@@ -17,4 +17,9 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 db.films = require("./models/Film.model")(sequelize, Sequelize)
 
-module.exports = db
+async function Sync() {
+    await sequelize.sync({alter:true}) // alter existing table
+    // {force:true} -- erase and recreate
+}
+
+module.exports = { db, Sync }

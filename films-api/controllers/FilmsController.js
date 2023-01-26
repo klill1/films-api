@@ -1,4 +1,4 @@
-const db = require("../db")
+const { db } = require("../db")
 const Film = db.films
 
 exports.getAll = async (req, res) => {
