@@ -28,18 +28,31 @@ app.get("/Users", async(req, res) =>{
         if (connection) return connection.end()
     }
 })
-
-app.get("/Customers", async(req, res) =>{
+app.get('/films', async (req, res) => {
     let connection;
     try {
         connection = await pool.getConnection()
-        const rows = await connection.query("SELECT * FROM Customers")
+        const rows = await connection.query("SELECT id, filmName FROM films")
         console.log(rows)
-        res.send(rows)        
-    }catch(error) {
+        res.send(rows)
+    } catch (error) {
         throw error
     } finally {
-        if (connection) return connection.end()
+        if(connection) return connection.end()
+    }
+})
+
+app.get('/customers', async (req, res) => {
+    let connection;
+    try {
+        connection = await pool.getConnection()
+        const rows = await connection.query("SELECT * FROM customers")
+        console.log(rows)
+        res.send(rows)
+    } catch (error) {
+        throw error
+    } finally {
+        if(connection) return connection.end()
     }
 })
 
