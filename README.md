@@ -15,6 +15,7 @@
 ### alumised tehtud
 #### npm init -y
 #### npm express install
+### npm install mariadb - google node and mariadb
 
 
 
