@@ -19,8 +19,21 @@ const pool = mariadb.createPool({
     connectionlimit: 5
 })
 
+app.get("/Users", async(req, res) =>{
+    let connection;
+    try {
+        connection = await pool.getConnection()
+        const rows = await connection.query("SELECT Name FROM Users")
+        console.log(rows)
+        res.send(rows)        
+    }catch(error) {
+        throw error
+    } finally {
+        if (connection) return connection.end()
+    }
+})
+
 app.get("/Customers", async(req, res) =>{
-    console.log("customers initiating");
     let connection;
     try {
         connection = await pool.getConnection()
