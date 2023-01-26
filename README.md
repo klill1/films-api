@@ -23,3 +23,6 @@
 
 ### npm install swagger-ui-express
 ### npm install dotenv
+
+
+### node mariadb orm - sequalize
