@@ -15,6 +15,27 @@ exports.getById = async (req,res) => {
     res.send(films)
 }
 exports.createNew = async (req, res) => {
-    console.log(req.body)
-    res.send(req.body)
+    let film
+    try {
+      film = await Film.create(req.body)
+    } catch (error) {
+      if (error instanceof db.Sequelize.ValidationError) {
+        res.status(400).send({"error":error.errors.map((item)=> item.message)})
+      } else {
+        console.log("FilmsCreate: ",error)
+        res.status(500).send({"error":"Something went wrong on our side. Sorry :("})
+      }
+      return
+    }
+    res
+      .status(201)
+      .location(`${getBaseUrl(req)}/films/${film.id}`)
+      .json(film)
 }
+
+getBaseUrl = (request) => {
+    return (
+      (request.connection && request.connection.encrypted ? "https" : "http") +
+      `://${request.headers.host}`
+    )
+ }
