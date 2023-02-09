@@ -142,6 +142,49 @@
                 "summary": "Get full details of a film",
                 "description": "Returns full details of a given id film"
             },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Film"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "films"
+                ],
+                "responses": {
+                    "200": {
+                        "headers": {
+                            "location": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Film"
+                                }
+                            }
+                        },
+                        "description": "Game was updated"
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "500": {
+                        "description": "Something went wrong on our side. Sorry :("
+                    }
+                },
+                "operationId": "Id",
+                "summary": "Update film by given Id",
+                "description": "Update chosen film with given paramaters"
+            },
             "delete": {
                 "parameters": [
                     {

@@ -50,6 +50,24 @@ exports.deleteById = async (req, res) => {
   res.status(204).send()
 }
 
+exports.updateById = async (req, res) => {
+    let result
+    delete req.body.id
+  try {
+    result = await Film.update(req.body, {where: {id:req.params.id}})
+  } catch (error) {
+    console.log("Film: ", error)
+    res.status(500).send({error:"Something went wrong on our side. Sorry :("})
+    return
+  }
+  if(result === 0){
+    res.status(404).send({error: "Film not found"})
+    return
+  }
+  res.status(200).send()
+}
+
+
 getBaseUrl = (request) => {
     return (
       (request.connection && request.connection.encrypted ? "https" : "http") +
@@ -57,5 +75,6 @@ getBaseUrl = (request) => {
     )
 
  }
+
 
 
