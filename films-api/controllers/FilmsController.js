@@ -14,6 +14,7 @@ exports.getById = async (req,res) => {
     }
     res.send(films)
 }
+
 exports.createNew = async (req, res) => {
     let film
     try {
@@ -33,9 +34,12 @@ exports.createNew = async (req, res) => {
       .json(film)
 }
 
+
 getBaseUrl = (request) => {
     return (
       (request.connection && request.connection.encrypted ? "https" : "http") +
       `://${request.headers.host}`
     )
+
  }
+

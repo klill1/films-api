@@ -33,20 +33,67 @@
                         },
                         "description": "Ok message"
                     }
-                },                
+                },
                 "summary": "Get a list of all films",
                 "description": "Returns a list of all films in API"
             },
             "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Film"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "tags": [
                     "films"
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {}
+                "responses": {
+                    "201": {
+                        "headers": {
+                            "location": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "examples": {
+                                    "Location of created film": {
+                                        "value": "https://server:port/films/{id}"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Film"
+                                }
+                            }
+                        },
+                        "description": "Film was added"
                     },
-                    "required": true
-                }
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Invalid data": {
+                                        "value": {
+                                            "error": "Invalid input, missing required parameters"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Invalid data supplied"
+                    }
+                },
+                "summary": "Add new film",
+                "description": "Add new film with all the details\n"
             }
         },
         "/films/{id}": {
@@ -94,7 +141,17 @@
                 "operationId": "id",
                 "summary": "Get full details of a film",
                 "description": "Returns full details of a given id film"
-            }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
@@ -111,8 +168,42 @@
                 "example": {
                     "error": "Error message."
                 }
+            },
+            "Film": {
+                "title": "Root Type for Film",
+                "description": "Film details",
+                "required": [
+                    "filmName",
+                    "genre",
+                    "description",
+                    "releaseDate"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "filmName": {
+                        "type": "string"
+                    },
+                    "genre": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "releaseDate": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "filmName": "Matrix",
+                    "genre": "Action",
+                    "description": "action stuff with neo",
+                    "releaseDate": "01-01-2001"
+                }
             }
         }
     }
 }
-
