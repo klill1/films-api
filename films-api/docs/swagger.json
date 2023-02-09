@@ -33,9 +33,20 @@
                         },
                         "description": "Ok message"
                     }
-                },
+                },                
                 "summary": "Get a list of all films",
                 "description": "Returns a list of all films in API"
+            },
+            "post": {
+                "tags": [
+                    "films"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    },
+                    "required": true
+                }
             }
         },
         "/films/{id}": {
@@ -104,3 +115,4 @@
         }
     }
 }
+
