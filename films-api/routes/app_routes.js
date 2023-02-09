@@ -7,8 +7,7 @@ module.exports = (app) => {
 
     app.route("/films/:id")
         .get(filmsController.getById)
-    
-    //     .get(filmsController.getById)           // Read
-    //     .put(filmsController.updateById)        // Update
-    //     .delete(filmsController.deleteById)     // Delete
-}   
+        .delete(filmsController.deleteById)     // Delete
+    //     .put(filmsController.updateById)        // Update 
+} 
+  
