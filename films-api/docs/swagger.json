@@ -40,13 +40,60 @@
             "post": {
                 "requestBody": {
                     "content": {
-                        "application/json": {}
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Film"
+                            }
+                        }
                     },
                     "required": true
                 },
                 "tags": [
                     "films"
-                ]
+                ],
+                "responses": {
+                    "201": {
+                        "headers": {
+                            "location": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "examples": {
+                                    "Location of created film": {
+                                        "value": "https://server:port/films/{id}"
+                                    }
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Film"
+                                }
+                            }
+                        },
+                        "description": "Film was added"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Invalid data": {
+                                        "value": {
+                                            "error": "Invalid input, missing required parameters"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Invalid data supplied"
+                    }
+                },
+                "summary": "Add new film",
+                "description": "Add new film with all the details\n"
             }
         },
         "/films/{id}": {
@@ -120,6 +167,42 @@
                 },
                 "example": {
                     "error": "Error message."
+                }
+            },
+            "Film": {
+                "title": "Root Type for Film",
+                "description": "Film details",
+                "required": [
+                    "filmName",
+                    "genre",
+                    "description",
+                    "releaseDate"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "filmName": {
+                        "type": "string"
+                    },
+                    "genre": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "releaseDate": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "filmName": "Matrix",
+                    "genre": "Action",
+                    "description": "action stuff with neo",
+                    "release": "31-01-2001"
                 }
             }
         }
