@@ -198,11 +198,10 @@
                     }
                 },
                 "example": {
-                    "id": 1,
                     "filmName": "Matrix",
                     "genre": "Action",
                     "description": "action stuff with neo",
-                    "release": "31-01-2001"
+                    "releaseDate": "01-01-2001"
                 }
             }
         }

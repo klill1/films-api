@@ -14,7 +14,10 @@ exports.getById = async (req,res) => {
     }
     res.send(films)
 }
-exports.createNew = async (req, res) => {
-    console.log(req.body)
-    res.send(req.body)
-}
+
+getBaseUrl = (request) => {
+    return (
+      (request.connection && request.connection.encrypted ? "https" : "http") +
+      `://${request.headers.host}`
+    )
+  }
