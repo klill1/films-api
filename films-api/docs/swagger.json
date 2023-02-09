@@ -33,20 +33,20 @@
                         },
                         "description": "Ok message"
                     }
-                },                
+                },
                 "summary": "Get a list of all films",
                 "description": "Returns a list of all films in API"
             },
             "post": {
-                "tags": [
-                    "films"
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {}
                     },
                     "required": true
-                }
+                },
+                "tags": [
+                    "films"
+                ]
             }
         },
         "/films/{id}": {
@@ -94,7 +94,17 @@
                 "operationId": "id",
                 "summary": "Get full details of a film",
                 "description": "Returns full details of a given id film"
-            }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
@@ -115,4 +125,3 @@
         }
     }
 }
-
