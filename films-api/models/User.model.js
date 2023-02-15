@@ -5,19 +5,10 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        userName: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-        password: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-        email: {
+        name: {
             type: Sequelize.STRING,
             allowNull: false
         }
     })
-
     return User
 }
