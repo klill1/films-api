@@ -472,6 +472,39 @@
                     "required": true
                 }
             ]
+        },
+        "/filmUsers": {
+            "get": {
+                "requestBody": {},
+                "tags": [
+                    "filmUsers"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "example": {
+                                        "value": {
+                                            "filmName": "The Godfather",
+                                            "userName": "appi"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "ok"
+                    }
+                },
+                "summary": "Get list of films from user",
+                "description": "Get a list of films that a user has selected for themselves"
+            }
         }
     },
     "components": {
@@ -538,8 +571,8 @@
                         "properties": {
                             "userName": {
                                 "type": "string"
-                            }                            
-                        }                                        
+                            }
+                        }
                     },
                     "id": {
                         "format": "int32",
