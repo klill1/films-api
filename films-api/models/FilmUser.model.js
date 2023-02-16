@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize, Film, User) => {
-    const FilmLibrary = sequelize.define("FilmLibrary", {
+    const FilmUser = sequelize.define("filmuser", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -20,7 +20,11 @@ module.exports = (sequelize, Sequelize, Film, User) => {
             },
         }
     })
-    Film.belongsToMany(User, {through: FilmLibrary})
-    User.belongsToMany(Film, {through: FilmLibrary})
-    return FilmLibrary
+    Film.belongsToMany(User, {through: FilmUser})
+    User.belongsToMany(Film, {through: FilmUser})
+    Film.hasMany(FilmUser)
+    FilmUser.belongsTo(Film)
+    User.hasMany(FilmUser)
+    FilmUser.belongsTo(User)
+    return FilmUser
 }
