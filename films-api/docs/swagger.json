@@ -346,7 +346,7 @@
                                 },
                                 "examples": {
                                     "Full details of given id user": {
-                                        "value": "{\"id\":1,\"userName\": \"Karen\",\"email\": \"test@test.com\"}"
+                                        "value": "{\"id\":1,\"userName\": \"Karen\"}"
                                     }
                                 }
                             }
