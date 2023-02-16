@@ -1,6 +1,7 @@
-const { db } = require("../db")
+/* const { db } = require("../db")
 const FilmUsers = db.filmUsers
 const Film = db.films
+
 exports.getAll = async (req,res) => {
     const filmUsers = await FilmUsers.findAll({
         include: { all: true},
@@ -15,4 +16,4 @@ exports.getAll = async (req,res) => {
         }
     })
     res.send(result)
-}
+} */

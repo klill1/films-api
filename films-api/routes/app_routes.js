@@ -1,6 +1,6 @@
 const filmsController = require("../controllers/FilmsController")
 const usersController = require("../controllers/UsersController")
-const filmUsersController = require("../controllers/FilmUsersController")
+// const filmUsersController = require("../controllers/FilmUsersController")
 
 module.exports = (app) => {
     app.route("/films")
@@ -21,8 +21,8 @@ module.exports = (app) => {
         .delete(usersController.deleteById)
         .put(usersController.updateById)
 
-    app.route("/filmUsers")
-        .get(filmUsersController.getAll)
+    // app.route("/filmUsers")
+    //     .get(filmUsersController.getAll)
     
 } 
   
