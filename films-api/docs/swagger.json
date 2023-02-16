@@ -99,7 +99,7 @@
         "/films/{id}": {
             "get": {
                 "tags": [
-                    "details"
+                    "films"
                 ],
                 "responses": {
                     "200": {
@@ -186,6 +186,9 @@
                 "description": "Update chosen film with given paramaters"
             },
             "delete": {
+                "tags": [
+                    "films"
+                ],
                 "parameters": [
                     {
                         "name": "id",
@@ -329,7 +332,7 @@
         "/users/{id}": {
             "get": {
                 "tags": [
-                    "details"
+                    "users"
                 ],
                 "responses": {
                     "200": {
@@ -416,6 +419,9 @@
                 "description": "Update chosen user with given paramaters"
             },
             "delete": {
+                "tags": [
+                    "users"
+                ],
                 "parameters": [
                     {
                         "name": "id",
