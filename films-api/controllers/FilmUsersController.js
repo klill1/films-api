@@ -11,7 +11,7 @@ exports.getAll = async (req,res) => {
     let result = []
     result = filmUsers.map((gp) => {
         return {
-            "filmName": gp.Film.filmName,
+            "filmName": gp.film.filmName,
             "userName": `${gp.user.userName}`
         }
     })
