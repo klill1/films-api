@@ -17,7 +17,7 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 db.films = require("./models/Film.model")(sequelize, Sequelize)
 db.users = require("./models/User.model")(sequelize, Sequelize)
-// db.filmUsers = require("./models/FilmUser.model")(sequelize, Sequelize, db.films, db.users)
+db.filmUsers = require("./models/FilmUser.model")(sequelize, Sequelize, db.films, db.users)
 
 async function Sync() {
     await sequelize.sync({alter:true}) // alter existing table
