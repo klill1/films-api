@@ -528,8 +528,7 @@
                 "title": "Root Type for User",
                 "description": "User details",
                 "required": [
-                    "userName",
-                    "email"
+                    "userName"
                 ],
                 "type": "object",
                 "properties": {
@@ -539,15 +538,8 @@
                         "properties": {
                             "userName": {
                                 "type": "string"
-                            },
-                            "email": {
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "email": {
-                        "description": "user email",
-                        "type": "string"
+                            }                            
+                        }                                        
                     },
                     "id": {
                         "format": "int32",
@@ -556,8 +548,7 @@
                     }
                 },
                 "example": {
-                    "userName": "karen",
-                    "email": "test@test.com"
+                    "userName": "karen"
                 }
             }
         }
