@@ -2,7 +2,7 @@ const { db } = require("../db")
 const Film = db.films
 
 exports.getAll = async (req, res) => {
-    const films = await Film.findAll({attributes:["filmName"]})
+    const films = await Film.findAll({attributes:["id","filmName"]})
     res.send(films)
 }
 
@@ -64,7 +64,10 @@ exports.updateById = async (req, res) => {
     res.status(404).send({error: "Film not found"})
     return
   }
-  res.status(200).send()
+  const film = await Film.findByPk(req.params.id)
+  res.status(200)
+      .location(`${getBaseUrl(req)}/users/${film.id}`)
+      .json(film)
 }
 
 

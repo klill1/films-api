@@ -2,7 +2,7 @@ const { db } = require("../db")
 const User = db.users
 
 exports.getAll = async (req, res) => {
-    const users = await User.findAll({attributes:["userName"]})
+    const users = await User.findAll({attributes:["id", "userName"]})
     res.send(users)
 }
 
@@ -64,7 +64,10 @@ exports.updateById = async (req, res) => {
     res.status(404).send({error: "User not found"})
     return
   }
-  res.status(200).send()
+  const user = await User.findByPk(req.params.id)
+  res.status(200)
+      .location(`${getBaseUrl(req)}/users/${user.id}`)
+      .json(user)
 }
 
 

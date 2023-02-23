@@ -172,7 +172,7 @@
                                 }
                             }
                         },
-                        "description": "Game was updated"
+                        "description": "Film was updated"
                     },
                     "404": {
                         "description": "Not found."
@@ -202,6 +202,13 @@
                 ],
                 "responses": {
                     "204": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Film"
+                                }
+                            }
+                        },
                         "description": "Film deleted"
                     },
                     "404": {
@@ -419,6 +426,7 @@
                 "description": "Update chosen user with given paramaters"
             },
             "delete": {
+                "requestBody": {},
                 "tags": [
                     "users"
                 ],
