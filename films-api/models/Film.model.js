@@ -8,7 +8,6 @@ module.exports = (sequelize, Sequelize) => {
         filmName: {
             type: Sequelize.STRING,
             allowNull: false,
-            unique: true
         },
         genre: {
             type: Sequelize.STRING,
