@@ -4,7 +4,7 @@
     </table-template>
   </div>
   <Teleport to="body">
-    <modal :show="showModal" @close="showModal = false">
+    <modal :show="filmDetailId != 0" @close="filmDetailId = 0">
       <template #header>
         <h3>Filmi detailid</h3>
       </template>
@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       films: [],
-      showModal: false,
       filmDetailId: 0,
       currentFilm: {
         id: 0, 
@@ -43,10 +42,10 @@ export default {
   },
   watch: {
     async filmDetailId(newId) {
+      if (newId == 0) return;
       this.currentFilm = await (
         await fetch(`http://localhost:8090/films/${newId}`)
         ).json();
-      this.showModal = true;
     },
   }
 };
