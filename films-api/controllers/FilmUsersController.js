@@ -9,7 +9,7 @@ exports.getAll = async (req, res) => {
                           u.userName as "User Name"
                    FROM filmUsers AS fu 
                    INNER JOIN films AS f on f.id = fu.FilmId 
-                   INNER JOIN users AS u on u.id = fu.UserId 
+                   INNER JOIN users AS u on u.id = fu.UserId
                    GROUP BY fu.UserId;`
     const sqlResult = await db.sequelize.query(sql, { type: QueryTypes.SELECT })
     if (sqlResult.length === 0) {
