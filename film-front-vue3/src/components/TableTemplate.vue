@@ -9,6 +9,7 @@
       <th v-for="(keyName, index) in keyNames" :key="index">
         {{ keyName }}
       </th>
+      <th v-if="showControls"></th>
       <slot name="additionalHeaders"></slot>
     </tr>
     <tr v-for="item in items" :key="item.id">
@@ -28,7 +29,8 @@ export default {
   props: {
     caption: String,
     headers: Array,
-    items: Array
+    items: Array,
+    showControls: Boolean,
   },
   computed: {
     keyNames() {

@@ -7,11 +7,10 @@
       :showControls="true"
       @show="($event) => (filmDetailId = $event)"
     >
-      <template #additionalHeaders><th></th></template>
-      <template #additionalColumns> </template>
+      
     </table-template>
     <Teleport to="body">
-      <modal :show="showModal" @close="showModal = false">
+      <modal :show="filmDetailId != 0" @close="filmDetailId = 0">
         <template #header>
           <h3>Filmi detailid</h3>
         </template>
@@ -54,8 +53,8 @@ export default {
   },
   watch: {
     async filmDetailId(newId) {
+      if (newId == 0) return;
       this.currentFilm = await (await fetch(`http://localhost:8090/films/${newId}`)).json()
-      this.showModal = true
     }
   }
 }
