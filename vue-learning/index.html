@@ -13,7 +13,6 @@
         <p>
             <input type="text" v-model="greeting">
         </p>
-
         <p>
             {{ greeting }} ({{ greeting.length }})
         </p>
@@ -28,8 +27,8 @@
             },
             mounted() {
                 setTimeout(() => {
-                    this.greeting = 'Change me'
-                }, 3000);
+                    this.greeting = 'Changed';
+                }, 3000);                
             }
         }).mount('#app');
     </script>    
