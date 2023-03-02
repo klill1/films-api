@@ -1,31 +1,59 @@
 <template>
   <div>
-    <table border="1">
-    <caption>Kõik filmid</caption>
-      <tr>
-        <th>Nimi:</th>
-      </tr>
-      <tr v-for="film in films" :key="film.id">
-        <td>{{ film.filmName }}</td>
-      </tr>
-    </table>
+    <table-template caption="Kõik filmid" :items="films" :showControls="true" @show="filmDetailId = $event.id">
+    </table-template>
   </div>
+  <Teleport to="body">
+    <modal :show="showModal" @close="showModal = false">
+      <template #header>
+        <h3>Filmi detailid</h3>
+      </template>
+      <template #body>
+        <b>Nimi: </b> {{ currentFilm.filmName }} <br />
+        <b>Kirjeldus: </b> {{ currentFilm.description }} <br />
+        <b>Avalikustamine: </b> {{ currentFilm.releaseDate }} <br />
+      </template>
+    </modal>
+  </Teleport>
 </template>
 
 <script>
+import Modal from './components/Modal.vue'
+import TableTemplate from './components/Table.vue'
 export default {
+  components: {
+    Modal,
+    TableTemplate,
+  },
   data() {
     return {
       films: [],
+      showModal: false,
+      filmDetailId: 0,
+      currentFilm: {
+        id: 0, 
+        filmName: "", 
+        description: "", 
+        releaseDate: "",
+      }
     };
   },
   async created() {
     this.films = await (await fetch("http://localhost:8090/films")).json();
   },
+  watch: {
+    async filmDetailId(newId) {
+      this.currentFilm = await (
+        await fetch(`http://localhost:8090/films/${newId}`)
+        ).json();
+      this.showModal = true;
+    },
+  }
 };
 </script>
 
 <style scoped>
+
 header {
   line-height: 1.5;
   max-height: 100vh;
