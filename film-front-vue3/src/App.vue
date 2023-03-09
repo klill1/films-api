@@ -7,31 +7,19 @@
       :showControls="true"
       @show="($event) => (filmDetailId = $event)"
     >
-      
     </table-template>
-    <Teleport to="body">
-      <modal :show="filmDetailId != 0" @close="filmDetailId = 0">
-        <template #header>
-          <h3>Filmi detailid</h3>
-        </template>
-        <template #body>
-          <b>Name: </b>{{ currentFilm.filmName }}<br />
-          <b>genre: </b>{{ currentFilm.genre }}<br />
-          <b>description: </b>{{ currentFilm.description }}<br />
-          <b>releaseDate: </b>{{ currentFilm.releaseDate }}<br />
-        </template>
-      </modal>
-    </Teleport>
+    <film-details :filmDetailId="filmDetailId" @close="$event => filmDetailId=0" > </film-details>
   </div>
 </template>
 
 <script>
-import Modal from './components/icons/Modal.vue'
+import FilmDetails from './components/FilmDetails.vue'
 import TableTemplate from './components/TableTemplate.vue'
+
 export default {
   components: {
-    Modal,
-    TableTemplate
+    TableTemplate,
+    FilmDetails
   },
   data() {
     return {
