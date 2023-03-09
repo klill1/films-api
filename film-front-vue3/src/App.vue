@@ -3,22 +3,11 @@
     <table-template caption="Kõik filmid" :items="films" :showControls="true" @show="filmDetailId = $event.id">
     </table-template>
   </div>
-  <Teleport to="body">
-    <modal :show="filmDetailId != 0" @close="filmDetailId = 0">
-      <template #header>
-        <h3>Filmi detailid</h3>
-      </template>
-      <template #body>
-        <b>Nimi: </b> {{ currentFilm.filmName }} <br />
-        <b>Kirjeldus: </b> {{ currentFilm.description }} <br />
-        <b>Avalikustamine: </b> {{ currentFilm.releaseDate }} <br />
-      </template>
-    </modal>
-  </Teleport>
+  <film-details :filmDetailId="filmDetailId" @close="filmDetailId = 0"></film-details>
 </template>
 
 <script>
-import Modal from './components/Modal.vue'
+import FilmDetails from './components/FilmDetails.vue'
 import TableTemplate from './components/Table.vue'
 export default {
   components: {
@@ -29,25 +18,11 @@ export default {
     return {
       films: [],
       filmDetailId: 0,
-      currentFilm: {
-        id: 0, 
-        filmName: "", 
-        description: "", 
-        releaseDate: "",
-      }
-    };
+    }
   },
   async created() {
     this.films = await (await fetch("http://localhost:8090/films")).json();
-  },
-  watch: {
-    async filmDetailId(newId) {
-      if (newId == 0) return;
-      this.currentFilm = await (
-        await fetch(`http://localhost:8090/films/${newId}`)
-        ).json();
-    },
-  }
+  }, 
 };
 </script>
 
