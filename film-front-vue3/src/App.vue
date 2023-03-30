@@ -1,52 +1,23 @@
-<template>
-  <div>
-    <table-template
-      v-if="films"
-      caption="Kõik filmid"
-      :items="films"
-      :showControls="true"
-      @show="($event) => (filmDetailId = $event)"
-    >
-    </table-template>
-    <film-details :filmDetailId="filmDetailId" @close="$event => filmDetailId=0" > </film-details>
-  </div>
-</template>
-
-<script>
-import FilmDetails from './components/FilmDetails.vue'
-import TableTemplate from './components/TableTemplate.vue'
-
-export default {
-  components: {
-    TableTemplate,
-    FilmDetails
-  },
-  data() {
-    return {
-      msg: 'Hello World!',
-      films: [],
-      showModal: false,
-      filmDetailId: 0,
-      currentFilm: {
-        id: 5,
-        filmName: 'asdf',
-        genre: 'ah',
-        description: 'sfh',
-        releaseDate: 'sd'
-      }
-    }
-  },
-  async created() {
-    this.films = await (await fetch('http://localhost:8090/films')).json()
-  },
-  watch: {
-    async filmDetailId(newId) {
-      if (newId == 0) return;
-      this.currentFilm = await (await fetch(`http://localhost:8090/films/${newId}`)).json()
-    }
-  }
-}
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
 </script>
+
+<template>
+  <header>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+
+      <nav>
+        <RouterLink to="/">Films</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
+    </div>
+  </header>
+
+<RouterView />
+</template>
 
 <style scoped>
 header {

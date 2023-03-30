@@ -38,6 +38,7 @@ export default({
   },
   props: {
     filmDetailId: Number,
+    // eslint-disable-next-line vue/require-prop-type-constructor
     required: true
   },
   methods: {
