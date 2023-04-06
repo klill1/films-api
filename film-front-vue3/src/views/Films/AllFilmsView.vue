@@ -1,5 +1,6 @@
 <template>
   <div>
+    <RouterLink to="/addFilm">Lisa uus film</RouterLink>
     <table-template
       v-if="films"
       caption="Kõik filmid"
@@ -13,13 +14,14 @@
 </template>
 
 <script>
-import FilmDetails from '../components/FilmDetails.vue'
-import TableTemplate from '../components/TableTemplate.vue'
-
+import FilmDetails from '../../components/FilmDetails.vue'
+import TableTemplate from '../../components/TableTemplate.vue'
+import {RouterLink} from 'vue-router'
 export default {
   components: {
     TableTemplate,
-    FilmDetails
+    FilmDetails,
+    RouterLink,
   },
   data() {
     return {

@@ -22,7 +22,6 @@ export default {
 
         <div class="modal-footer">
           <slot name="footer">
-            default footer
             <button
               @click="$emit('close')"
             >OK</button>
