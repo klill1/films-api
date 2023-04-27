@@ -18,6 +18,7 @@
       </td>
       <td v-if="showControls">
         <button @click="($event) => $emit('show', item.id)">Kuva detailid</button>
+        <button @click="($event) => $emit('delete', item.id)">kustuta</button>
       </td>
       <slot name="additionalColumns"></slot>
     </tr>
@@ -32,6 +33,8 @@ export default {
     items: Array,
     showControls: Boolean,
   },
+  emits : ["show", "delete"],
+  
   computed: {
     keyNames() {
       return this.items.length > 0 ? Object.keys(this.items[0]) : []

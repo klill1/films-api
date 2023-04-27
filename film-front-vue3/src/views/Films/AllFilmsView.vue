@@ -7,6 +7,7 @@
       :items="films"
       :showControls="true"
       @show="($event) => (filmDetailId = $event)"
+      @delete="($event) => deleteFilm($event)"
     >
     </table-template>
     <film-details :filmDetailId="filmDetailId" @close="$event => filmDetailId=0" > </film-details>
@@ -29,6 +30,7 @@ export default {
       films: [],
       showModal: false,
       filmDetailId: 0,
+      filmDeleteId: 0,
       currentFilm: {
         id: 5,
         filmName: 'asdf',
@@ -45,6 +47,17 @@ export default {
     async filmDetailId(newId) {
       if (newId == 0) return;
       this.currentFilm = await (await fetch(`http://localhost:8090/films/${newId}`)).json()
+    }
+  },
+  methods: {
+    async deleteFilm(filmId) {
+      fetch("http://localhost:8090/films/" + filmId , {
+        method: "delete",
+      }).then(async (response) => {
+        const data = await response.json();
+        this.films.splice(this.films.indexOf((filmId), 1));
+        console.log(data);
+      })
     }
   }
 }
