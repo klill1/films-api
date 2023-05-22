@@ -2,65 +2,68 @@
   <div>
     <RouterLink to="/addFilm">Lisa uus film</RouterLink>
     <table-template
-      v-if="films"
       caption="Kõik filmid"
       :items="films"
       :showControls="true"
-      @show="($event) => (filmDetailId = $event)"
-      @delete="($event) => deleteFilm($event)"
-    >
+      @show="filmDetailId = $event.id"
+      @delete="filmToDelete = $event">
     </table-template>
-    <film-details :filmDetailId="filmDetailId" @close="$event => filmDetailId=0" > </film-details>
   </div>
+  <film-details :filmDetailId="filmDetailId" @close="$event => filmDetailId=0"></film-details>
+  <modal :show="JSON.stringify(filmToDelete) !== '{}'">
+    <template #header>
+      <h3>Filmi Kustutamine</h3>
+    </template>
+    <template #body>
+      <p>Oled kindel, et soovid kustutada seda filmi?</p>
+    </template>
+    <template #footer>
+      <button class="modal-default-button" @click="deleteFilm()">Jah</button>
+      <button class="modal-default-button" @click="filmToDelete = {}">
+        Ei
+      </button>
+    </template>
+  </modal>
 </template>
 
 <script>
 import FilmDetails from '../../components/FilmDetails.vue'
 import TableTemplate from '../../components/TableTemplate.vue'
+import Modal from '../../components/Modal.vue';
 import {RouterLink} from 'vue-router'
 export default {
   components: {
     TableTemplate,
     FilmDetails,
     RouterLink,
+    Modal
   },
   data() {
     return {
-      msg: 'Hello World!',
       films: [],
-      showModal: false,
       filmDetailId: 0,
-      filmDeleteId: 0,
-      currentFilm: {
-        id: 5,
-        filmName: 'asdf',
-        genre: 'ah',
-        description: 'sfh',
-        releaseDate: 'sd'
-      }
-    }
+      filmToDelete: {},
+    };
   },
   async created() {
     this.films = await (await fetch('http://localhost:8090/films')).json()
   },
-  watch: {
-    async filmDetailId(newId) {
-      if (newId == 0) return;
-      this.currentFilm = await (await fetch(`http://localhost:8090/films/${newId}`)).json()
-    }
-  },
   methods: {
-    async deleteFilm(filmId) {
-      fetch("http://localhost:8090/films/" + filmId , {
+    async deleteFilm() {
+      fetch("http://localhost:8090/films/" + this.filmToDelete.id, {
         method: "delete",
       }).then(async (response) => {
-        const data = await response.json();
-        this.films.splice(this.films.indexOf((filmId), 1));
-        console.log(data);
+        if (response.status == 204) {
+          this.films.splice(this.films.indexOf(this.filmToDelete), 1);
+          this.filmToDelete = {};
+        } else {
+          const data = await response.json();
+          console.log("DELETE: ", data);
+        }
       })
     }
   }
-}
+};
 </script>
 
 <style scoped>

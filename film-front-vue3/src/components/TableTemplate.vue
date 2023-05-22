@@ -17,8 +17,8 @@
         {{ item[keyName] }}
       </td>
       <td v-if="showControls">
-        <button @click="($event) => $emit('show', item.id)">Kuva detailid</button>
-        <button @click="($event) => $emit('delete', item.id)">kustuta</button>
+        <button @click="($event) => $emit('show', item)">Kuva detailid</button>
+        <button @click="($event) => $emit('delete', item)">Kustuta</button>
       </td>
       <slot name="additionalColumns"></slot>
     </tr>

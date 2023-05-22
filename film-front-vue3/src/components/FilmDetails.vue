@@ -5,10 +5,10 @@
         <h3>Filmi detailid</h3>
       </template>
       <template #body>
-        <b>Name: </b>{{ currentFilm.filmName }}<br />
-        <b>genre: </b>{{ currentFilm.genre }}<br />
-        <b>description: </b>{{ currentFilm.description }}<br />
-        <b>releaseDate: </b>{{ currentFilm.releaseDate }}<br />
+        <b>Nimi: </b>{{ currentFilm.filmName }}<br />
+        <b>Žanr: </b>{{ currentFilm.genre }}<br />
+        <b>Kirjeldus: </b>{{ currentFilm.description }}<br />
+        <b>Avalikustamine: </b>{{ currentFilm.releaseDate }}<br />
       </template>
     </modal>
   </Teleport>
@@ -24,22 +24,23 @@ export default({
   data() {
     return {
       currentFilm: {
-        id: 5,
-        filmName: 'asdf',
-        genre: 'ah',
-        description: 'sfh',
-        releaseDate: 'sd'
+        id: 0,
+        filmName: '',
+        genre: '',
+        description: '',
+        releaseDate: ''
       }
-    }
+    };
   },
   beforeUpdate() {
     if (this.filmDetailId === 0) return;
     this.getDetails()
   },
   props: {
-    filmDetailId: Number,
-    // eslint-disable-next-line vue/require-prop-type-constructor
-    required: true
+    filmDetailId:{
+      type: Number,
+      required: true,
+    }
   },
   methods: {
     async getDetails() {
@@ -48,3 +49,9 @@ export default({
   }
 })
 </script>
+
+<style>
+.modal-container {
+  width: 700px;
+}
+</style>

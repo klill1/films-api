@@ -5,8 +5,8 @@ const User = db.users
 const QueryTypes = db.Sequelize.QueryTypes
 
 exports.getAll = async (req, res) => {
-    const sql = `SELECT GROUP_CONCAT(f.filmName SEPARATOR '; ') as "Film Name",
-                          u.userName as "User Name"
+    const sql = `SELECT GROUP_CONCAT(f.filmName SEPARATOR '; ') as "filmName",
+                          u.userName as "userName"
                    FROM filmUsers AS fu 
                    INNER JOIN films AS f on f.id = fu.FilmId 
                    INNER JOIN users AS u on u.id = fu.UserId

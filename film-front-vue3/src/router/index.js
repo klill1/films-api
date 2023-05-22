@@ -23,6 +23,17 @@ const router = createRouter({
       component: () => import("../views/Films/CreateFilmView.vue"),
       createComponent: () => import("../views/Films/CreateFilmView.vue"),
     },
+    {
+      path: '/users',
+      name: 'users',
+      component: () => import("../views/Users/AllUsersView.vue")
+    },
+    {
+      path: '/addUser',
+      name: 'addUsers',
+      component: () => import("../views/Users/CreateUserView.vue"),
+      createComponent: () => import("../views/Users/CreateUserView.vue"),
+    }
   ]
 })
 
